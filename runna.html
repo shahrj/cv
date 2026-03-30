@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruan Shah — Staff Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --ink-secondary: #4a4a4a;
+      --ink-tertiary: #777;
+      --bg: #fafaf8;
+      --accent: #c2410c;
+      --accent-subtle: #fff7ed;
+      --rule: #ddd;
+      --rule-light: #eee;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: var(--ink);
+      background: #e8e6e1;
+      line-height: 1.55;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--bg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 30px rgba(0,0,0,0.06);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      padding: 44px 48px 36px;
+      border-bottom: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 48px;
+      right: 48px;
+      height: 1px;
+      background: var(--ink);
+      opacity: 0.15;
+    }
+
+    .name {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+
+    .summary {
+      font-size: 0.93rem;
+      color: var(--ink-secondary);
+      margin-top: 14px;
+      max-width: 580px;
+      line-height: 1.6;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin-top: 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.73rem;
+      color: var(--ink-tertiary);
+      letter-spacing: 0.01em;
+    }
+
+    .contact a {
+      color: var(--ink-tertiary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .contact span::before {
+      content: '·';
+      margin-right: 0;
+      display: none;
+    }
+
+    /* ─── Main Content ─── */
+    .content {
+      padding: 32px 48px 44px;
+    }
+
+    /* ─── Section ─── */
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule-light);
+    }
+
+    /* ─── Role ─── */
+    .role {
+      margin-bottom: 22px;
+    }
+
+    .role:last-child {
+      margin-bottom: 0;
+    }
+
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      margin-bottom: 8px;
+    }
+
+    .role-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .role-company {
+      font-weight: 600;
+    }
+
+    .role-descriptor {
+      font-weight: 400;
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+    }
+
+    .role-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-tertiary);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .role-context {
+      font-size: 0.82rem;
+      color: var(--ink-tertiary);
+      font-style: italic;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .role-bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .role-bullets li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 6px;
+      font-size: 0.87rem;
+      color: var(--ink-secondary);
+      line-height: 1.58;
+    }
+
+    .role-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 5px;
+      height: 1.5px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    .role-bullets li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Metric highlights */
+    .metric {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── Building Section ─── */
+    .building-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .building-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-subtle);
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .building-desc {
+      font-size: 0.87rem;
+      color: var(--ink-secondary);
+      line-height: 1.58;
+    }
+
+    .building-name {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* ─── Education ─── */
+    .edu-item {
+      margin-bottom: 10px;
+    }
+
+    .edu-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+    }
+
+    .edu-degree {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .edu-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-tertiary);
+    }
+
+    .edu-detail {
+      font-size: 0.82rem;
+      color: var(--ink-tertiary);
+      margin-top: 2px;
+      padding-left: 0;
+    }
+
+    /* ─── Compact roles ─── */
+    .role-compact .role-bullets li {
+      margin-bottom: 4px;
+    }
+
+    /* ─── Divider between major sections ─── */
+    .section + .section {
+      padding-top: 0;
+    }
+
+    /* ─── Print Styles ─── */
+    @media print {
+      html { font-size: 13.5px; }
+      body {
+        background: white;
+        padding: 0;
+      }
+      .page {
+        box-shadow: none;
+        max-width: none;
+        border-radius: 0;
+      }
+      .header { padding: 32px 40px 28px; }
+      .content { padding: 24px 40px 32px; }
+      .section { margin-bottom: 22px; }
+      .role { margin-bottom: 18px; }
+      .role-bullets li { margin-bottom: 4px; }
+      .role-bullets li::before {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: var(--accent) !important;
+      }
+
+      .contact a {
+        border-bottom: none;
+        color: var(--ink-tertiary);
+      }
+
+      @page {
+        margin: 0.5cm;
+        size: A4;
+      }
+    }
+
+    /* ─── Mobile ─── */
+    @media (max-width: 600px) {
+      html { font-size: 14px; }
+      body { padding: 16px 8px; }
+      .header { padding: 28px 24px 24px; }
+      .content { padding: 24px 24px 32px; }
+      .name { font-size: 2rem; }
+      .role-header { flex-direction: column; }
+      .edu-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="name">Ruan Shah</h1>
+      <div class="title">Staff Product Manager</div>
+      <p class="summary">Growth product leader who has owned the full funnel - from first-touch acquisition through monetisation and retention - across B2C and B2B products. Builds high-velocity experimentation cultures and develops the PMs who run them.</p>
+      <div class="contact">
+        <span>London, UK</span>
+        <span><a href="mailto:ruanjshah@gmail.com">ruanjshah@gmail.com</a></span>
+        <span>07880 342433</span>
+        <span><a href="https://linkedin.com/in/ruanshah">linkedin.com/in/ruanshah</a></span>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+
+      <!-- Employment -->
+      <section class="section">
+        <div class="section-label">Employment</div>
+
+        <!-- HackerOne -->
+        <div class="role">
+          <div class="role-header">
+            <div class="role-title"><span class="role-company">HackerOne</span> &middot; Staff Product Manager, AI</div>
+            <div class="role-date">Sep 2025 &ndash; Present</div>
+          </div>
+          <ul class="role-bullets">
+            <li>Launched a new product to <span class="metric">12,000 MAUs</span> within 3 months with <span class="metric">90% MoM</span> growth - identified the opportunity, shipped end-to-end, and owned acquisition, activation, and retention measurement.</li>
+            <li>Manage and develop a product manager - building their ownership of a product line, establishing prioritisation frameworks, and growing their ability to run experiments independently.</li>
+            <li>Led adoption of AI-powered research workflows across the PM team - designed the playbook, ran training sessions, and coached PMs on using automated research synthesis to move faster from data to insight.</li>
+            <li>Introduced structured experimentation practices across the product org - designed evaluation frameworks that improved a core conversion metric from <span class="metric">88%</span> to <span class="metric">93%</span>.</li>
+            <li>Led cross-functional enablement for HackerOne's largest strategic account (AWS) - partnered with sales and customer success to drive adoption, aligning product, marketing, and commercial teams around shared growth goals.</li>
+          </ul>
+        </div>
+
+        <!-- GWI Staff -->
+        <div class="role">
+          <div class="role-header">
+            <div class="role-title"><span class="role-company">GWI</span> &middot; Staff Product Manager, Growth &amp; AI</div>
+            <div class="role-date">Mar 2025 &ndash; Jul 2025</div>
+          </div>
+          <ul class="role-bullets">
+            <li>Built a personalised marketing workflow with multi-million pound pipeline coverage at a scale previously impractical - bridging product and growth marketing to drive acquisition through automation.</li>
+            <li>Built an automated competitive pricing monitor - scheduled daily scraping of competitor pricing pages, detected changes, and generated summaries of positioning and packaging impact.</li>
+            <li>Led definition of GWI's AI automation strategy - identifying where automation could deliver durable leverage versus where it would undermine trust, quality, or brand.</li>
+            <li>Established lightweight evals and feedback loops to rapidly progress from prototype to operational workflow.</li>
+          </ul>
+        </div>
+
+        <!-- GWI Senior -->
+        <div class="role">
+          <div class="role-header">
+            <div class="role-title"><span class="role-company">GWI</span> &middot; Senior Product Manager, Growth &amp; AI</div>
+            <div class="role-date">Apr 2023 &ndash; Mar 2025</div>
+          </div>
+          <ul class="role-bullets">
+            <li>Drove <span class="metric">&pound;5M ARR</span> uplift through a personalised cross-channel growth strategy operating across web, email, and in-product surfaces - owning acquisition and conversion across the full funnel.</li>
+            <li>Built a 0&rarr;1 conversational product for self-serve discovery - <span class="metric">44,000+</span> user sessions, <span class="metric">220%</span> increase in new sign-ups, owning onboarding and activation through to first value moment.</li>
+            <li>Established the experimentation methodology for a new product surface through rapid iteration - the framework the team continued using after my promotion to Staff.</li>
+          </ul>
+        </div>
+
+        <!-- GWI PM -->
+        <div class="role role-compact">
+          <div class="role-header">
+            <div class="role-title"><span class="role-company">GWI</span> &middot; Product Manager, Search &amp; Discovery</div>
+            <div class="role-date">Nov 2021 &ndash; Apr 2023</div>
+          </div>
+          <ul class="role-bullets">
+            <li>Shipped ML-powered search and recommendation APIs across the platform, reducing time-to-insight by <span class="metric">27%</span> - directly improving activation and first-session retention.</li>
+          </ul>
+        </div>
+
+        <!-- Atom Learning -->
+        <div class="role">
+          <div class="role-header">
+            <div class="role-title"><span class="role-company">Atom Learning</span> &middot; Product Manager, Growth</div>
+            <div class="role-date">Jan 2021 &ndash; Oct 2021</div>
+          </div>
+          <ul class="role-bullets">
+            <li>First product hire. Owned the full growth funnel - onboarding, activation, monetisation, and pricing. Mentored junior PMs during a 3-month leadership vacancy.</li>
+            <li>Designed onboarding and gamification flows that achieved <span class="metric">24%</span> activation conversion and <span class="metric">100%</span> increase in WAUs - defining FTUE best practices for the product team.</li>
+            <li>Spearheaded pricing and packaging experimentation - restructured tiers, trials, and price points to deliver a <span class="metric">23% LTV</span> improvement.</li>
+            <li>Built the marketing site and CMS with the growth marketing team, driving <span class="metric">15%</span> organic traffic increase in 3 months.</li>
+            <li>Led parent app redesign, increasing YoY revenue by <span class="metric">30%</span> through improved conversion flows and reduced drop-off across the purchase journey.</li>
+          </ul>
+        </div>
+
+        <!-- Tesco -->
+        <div class="role role-compact">
+          <div class="role-header">
+            <div class="role-title"><span class="role-company">Tesco</span> &middot; Graduate Product Manager, Pricing &amp; Experimentation</div>
+            <div class="role-date">Sep 2019 &ndash; Jan 2021</div>
+          </div>
+          <ul class="role-bullets">
+            <li>Designed and ran A/B experiments on ML pricing forecasts for seasonal events, reducing prediction error by up to <span class="metric">70%</span> through iterative testing and model tuning.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Building -->
+      <section class="section">
+        <div class="section-label">Building</div>
+        <div class="building-item">
+          <span class="building-tag">Ship</span>
+          <p class="building-desc"><span class="building-name">Next Set</span> - Designed and shipped a fitness training app with AI coaching, progression logic, and subscription monetisation. Built end-to-end including onboarding, retention mechanics, and Stripe payments.</p>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section">
+        <div class="section-label">Education</div>
+        <div class="edu-item">
+          <div class="edu-header">
+            <div class="edu-degree">MSc Energy &amp; Environment (Engineering), Merit</div>
+            <div class="edu-date">University of Leeds &middot; 2017&ndash;2018</div>
+          </div>
+          <p class="edu-detail">Distinction in ML research project on carbon emissions modelling.</p>
+        </div>
+        <div class="edu-item">
+          <div class="edu-header">
+            <div class="edu-degree">BSc Environmental Science (2.1)</div>
+            <div class="edu-date">University of Leeds &middot; 2014&ndash;2017</div>
+          </div>
+          <p class="edu-detail">David Kay Prize for Best Undergraduate Dissertation, School of Earth &amp; Environment.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
