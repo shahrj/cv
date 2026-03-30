@@ -177,10 +177,11 @@
       font-weight: 600;
     }
 
-    .role-descriptor {
-      font-weight: 400;
-      color: var(--ink-secondary);
-      font-size: 0.95rem;
+    .role-focus {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-tertiary);
+      letter-spacing: 0.02em;
     }
 
     .role-date {
@@ -189,14 +190,6 @@
       color: var(--ink-tertiary);
       letter-spacing: 0.02em;
       white-space: nowrap;
-    }
-
-    .role-context {
-      font-size: 0.82rem;
-      color: var(--ink-tertiary);
-      font-style: italic;
-      margin-bottom: 8px;
-      line-height: 1.5;
     }
 
     .role-bullets {
@@ -222,6 +215,8 @@
       height: 1.5px;
       background: var(--accent);
       border-radius: 1px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     .role-bullets li:last-child {
@@ -332,12 +327,8 @@
       .content { padding: 24px 40px 32px; }
       .section { margin-bottom: 22px; }
       .role { margin-bottom: 18px; }
-      .role-bullets li { margin-bottom: 4px; }
-      .role-bullets li::before {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        background: var(--accent) !important;
-      }
+      .role-bullets li { margin-bottom: 4px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .role-bullets li::before { content: '–'; background: none; width: auto; height: auto; top: 0; font-size: 0.8rem; color: var(--accent); }
 
       .contact a {
         border-bottom: none;
@@ -369,7 +360,7 @@
     <header class="header">
       <h1 class="name">Ruan Shah</h1>
       <div class="title">Staff Product Manager</div>
-      <p class="summary">Growth product leader who has owned the full funnel - from first-touch acquisition through monetisation and retention - across B2C and B2B products. Builds high-velocity experimentation cultures and develops the PMs who run them.</p>
+      <p class="summary">Staff PM specialising in AI products for technical users. End-to-end ownership from strategy and discovery to prompt engineering, evals, and production deployment.</p>
       <div class="contact">
         <span>London, UK</span>
         <span><a href="mailto:ruanjshah@gmail.com">ruanjshah@gmail.com</a></span>
@@ -388,79 +379,78 @@
         <!-- HackerOne -->
         <div class="role">
           <div class="role-header">
-            <div class="role-title"><span class="role-company">HackerOne</span> &middot; Staff Product Manager, AI</div>
+            <div class="role-title"><span class="role-company">HackerOne</span> &middot; Staff Product Manager, <span class="role-focus">AI</span></div>
             <div class="role-date">Sep 2025 &ndash; Present</div>
           </div>
           <ul class="role-bullets">
-            <li>Launched a new product to <span class="metric">12,000 MAUs</span> within 3 months with <span class="metric">90% MoM</span> growth - identified the opportunity, shipped end-to-end, and owned acquisition, activation, and retention measurement.</li>
-            <li>Manage and develop a product manager - building their ownership of a product line, establishing prioritisation frameworks, and growing their ability to run experiments independently.</li>
-            <li>Led adoption of AI-powered research workflows across the PM team - designed the playbook, ran training sessions, and coached PMs on using automated research synthesis to move faster from data to insight.</li>
-            <li>Introduced structured experimentation practices across the product org - designed evaluation frameworks that improved a core conversion metric from <span class="metric">88%</span> to <span class="metric">93%</span>.</li>
-            <li>Led cross-functional enablement for HackerOne's largest strategic account (AWS) - partnered with sales and customer success to drive adoption, aligning product, marketing, and commercial teams around shared growth goals.</li>
+            <li>Shipped two agentic product lines in first 3 months - owning the full lifecycle from problem framing to live deployment in high-trust enterprise security workflows.</li>
+            <li>Built agentic workflows in Claude Code to automate PM workflows - research synthesis, eval analysis, skill packaging. Leading adoption and education across the PM team, changing how the org moves from idea to working prototype to code.</li>
+            <li>Stabilised a failing chat agent for report-writing after abrupt leadership change - diagnosed real failure modes through structured annotation sessions, separated signal from noise in hacker feedback, and rebuilt product direction under exec-level scrutiny.</li>
+            <li>Launched Hai Chat for hackers - rapidly shipped an AI chat experience for security researchers by identifying a low-effort, high-signal opportunity. Reached <span class="metric">12,000 MAUs</span> within 3 months with <span class="metric">90% MoM</span> growth.</li>
+            <li>Introduced evaluation-driven development practices across the AI product org - designed annotation workflows, labelling frameworks, and failure analysis processes that shifted the team from prompt-tweaking to systematic accuracy improvement (<span class="metric">88% &rarr; 93%</span> on validation agent).</li>
           </ul>
         </div>
 
         <!-- GWI Staff -->
         <div class="role">
           <div class="role-header">
-            <div class="role-title"><span class="role-company">GWI</span> &middot; Staff Product Manager, Growth &amp; AI</div>
+            <div class="role-title"><span class="role-company">GWI</span> &middot; Staff Product Manager, <span class="role-focus">AI &amp; Growth</span></div>
             <div class="role-date">Mar 2025 &ndash; Jul 2025</div>
           </div>
           <ul class="role-bullets">
-            <li>Built a personalised marketing workflow with multi-million pound pipeline coverage at a scale previously impractical - bridging product and growth marketing to drive acquisition through automation.</li>
-            <li>Built an automated competitive pricing monitor - scheduled daily scraping of competitor pricing pages, detected changes, and generated summaries of positioning and packaging impact.</li>
-            <li>Led definition of GWI's AI automation strategy - identifying where automation could deliver durable leverage versus where it would undermine trust, quality, or brand.</li>
-            <li>Established lightweight evals and feedback loops to rapidly progress from prototype to operational workflow.</li>
+            <li>Led definition of GWI's AI automation strategy, identifying where LLM systems could deliver durable leverage versus where automation would undermine trust, quality, or brand.</li>
+            <li>Independently built a multi-step LLM workflow using no-code tooling to deliver personalised marketing, with multi-million pound pipeline coverage, at a scale previously impractical.</li>
+            <li>Built an automated competitive pricing monitor in n8n - scheduled daily scraping of competitor pricing pages, detected changes via JS diffing, and generated AI summaries of positioning and packaging impact.</li>
+            <li>Established lightweight evals and feedback loops to rapidly progress from prototype to operational AI workflow.</li>
           </ul>
         </div>
 
         <!-- GWI Senior -->
         <div class="role">
           <div class="role-header">
-            <div class="role-title"><span class="role-company">GWI</span> &middot; Senior Product Manager, Growth &amp; AI</div>
+            <div class="role-title"><span class="role-company">GWI</span> &middot; Senior Product Manager, <span class="role-focus">AI &amp; Growth</span></div>
             <div class="role-date">Apr 2023 &ndash; Mar 2025</div>
           </div>
           <ul class="role-bullets">
-            <li>Drove <span class="metric">&pound;5M ARR</span> uplift through a personalised cross-channel growth strategy operating across web, email, and in-product surfaces - owning acquisition and conversion across the full funnel.</li>
-            <li>Built a 0&rarr;1 conversational product for self-serve discovery - <span class="metric">44,000+</span> user sessions, <span class="metric">220%</span> increase in new sign-ups, owning onboarding and activation through to first value moment.</li>
-            <li>Established the experimentation methodology for a new product surface through rapid iteration - the framework the team continued using after my promotion to Staff.</li>
+            <li>Built and shipped 0&ndash;1 AI chatbot for insight discovery - drove <span class="metric">220%</span> growth in new sign-ups and handled <span class="metric">44,000+</span> user conversations, demonstrating rapid adoption through conversational AI.</li>
+            <li>Designed agent's reasoning structure, prompt pipelines and evals, achieving a <span class="metric">74%</span> response accuracy.</li>
+            <li>Drove acquisition growth by <span class="metric">5pp</span> and <span class="metric">&pound;5m</span> in ARR uplift through personalised content growth strategy.</li>
           </ul>
         </div>
 
         <!-- GWI PM -->
         <div class="role role-compact">
           <div class="role-header">
-            <div class="role-title"><span class="role-company">GWI</span> &middot; Product Manager, Search &amp; Discovery</div>
+            <div class="role-title"><span class="role-company">GWI</span> &middot; Product Manager, <span class="role-focus">Search &amp; Discovery</span></div>
             <div class="role-date">Nov 2021 &ndash; Apr 2023</div>
           </div>
           <ul class="role-bullets">
-            <li>Shipped ML-powered search and recommendation APIs across the platform, reducing time-to-insight by <span class="metric">27%</span> - directly improving activation and first-session retention.</li>
+            <li>Shipped ML-powered search and recommendation APIs used across the platform, reducing customer time-to-insight by <span class="metric">27%</span>.</li>
           </ul>
         </div>
 
         <!-- Atom Learning -->
         <div class="role">
           <div class="role-header">
-            <div class="role-title"><span class="role-company">Atom Learning</span> &middot; Product Manager, Growth</div>
+            <div class="role-title"><span class="role-company">Atom Learning</span> &middot; Product Manager, <span class="role-focus">Growth &amp; Monetisation</span></div>
             <div class="role-date">Jan 2021 &ndash; Oct 2021</div>
           </div>
           <ul class="role-bullets">
-            <li>First product hire. Owned the full growth funnel - onboarding, activation, monetisation, and pricing. Mentored junior PMs during a 3-month leadership vacancy.</li>
-            <li>Designed onboarding and gamification flows that achieved <span class="metric">24%</span> activation conversion and <span class="metric">100%</span> increase in WAUs - defining FTUE best practices for the product team.</li>
-            <li>Spearheaded pricing and packaging experimentation - restructured tiers, trials, and price points to deliver a <span class="metric">23% LTV</span> improvement.</li>
-            <li>Built the marketing site and CMS with the growth marketing team, driving <span class="metric">15%</span> organic traffic increase in 3 months.</li>
-            <li>Led parent app redesign, increasing YoY revenue by <span class="metric">30%</span> through improved conversion flows and reduced drop-off across the purchase journey.</li>
+            <li>Developed onboarding, gamification and checkout best practices - achieving <span class="metric">24%</span> activation conversion and <span class="metric">100%</span> increase in WAUs.</li>
+            <li>Built new CMS and website with Marketing team, increasing traffic <span class="metric">15%</span> in 3 months.</li>
+            <li>Led redesign of the parent app, resulting in <span class="metric">30%</span> increase in YoY revenue.</li>
+            <li>Spearheaded pricing and packaging strategy - 15-50% price increase with <span class="metric">23%</span> LTV improvement.</li>
           </ul>
         </div>
 
         <!-- Tesco -->
         <div class="role role-compact">
           <div class="role-header">
-            <div class="role-title"><span class="role-company">Tesco</span> &middot; Graduate Product Manager, Pricing &amp; Experimentation</div>
+            <div class="role-title"><span class="role-company">Tesco</span> &middot; Graduate Product Manager, <span class="role-focus">Pricing &amp; ML</span></div>
             <div class="role-date">Sep 2019 &ndash; Jan 2021</div>
           </div>
           <ul class="role-bullets">
-            <li>Designed and ran A/B experiments on ML pricing forecasts for seasonal events, reducing prediction error by up to <span class="metric">70%</span> through iterative testing and model tuning.</li>
+            <li>Designed and ran experiments to recalibrate ML pricing forecasts for seasonal events, reducing prediction error by up to <span class="metric">70%</span>.</li>
           </ul>
         </div>
       </section>
@@ -470,7 +460,7 @@
         <div class="section-label">Building</div>
         <div class="building-item">
           <span class="building-tag">Ship</span>
-          <p class="building-desc"><span class="building-name">Next Set</span> - Designed and shipped a fitness training app with AI coaching, progression logic, and subscription monetisation. Built end-to-end including onboarding, retention mechanics, and Stripe payments.</p>
+          <p class="building-desc"><span class="building-name">Next Set</span> - Designed and shipped a full-stack hypertrophy training app (Next.js, TypeScript, Supabase, Stripe, Claude API) using Claude Code as primary development environment. AI coaching features built with eval-driven prompt development.</p>
         </div>
       </section>
 
@@ -482,7 +472,7 @@
             <div class="edu-degree">MSc Energy &amp; Environment (Engineering), Merit</div>
             <div class="edu-date">University of Leeds &middot; 2017&ndash;2018</div>
           </div>
-          <p class="edu-detail">Distinction in ML research project on carbon emissions modelling.</p>
+          <p class="edu-detail">Distinction in 9-month research project developing ML models of carbon emissions in American Higher Education.</p>
         </div>
         <div class="edu-item">
           <div class="edu-header">
