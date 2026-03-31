@@ -67,7 +67,8 @@
       position: relative;
       z-index: 2;
       box-shadow:
-        0 0 80px rgba(196, 132, 29, 0.04),
+        0 0 80px rgba(196, 132, 29, 0.06),
+        0 0 120px var(--ibad-dim),
         0 1px 3px rgba(0,0,0,0.3),
         0 8px 30px rgba(0,0,0,0.25);
     }
@@ -79,9 +80,16 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, var(--ibad) 20%, var(--spice) 35%, var(--spice-glow) 50%, var(--spice) 65%, var(--ibad) 80%, transparent 100%);
-      opacity: 0.6;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--ibad) 15%, var(--ibad-glow) 25%, var(--spice) 40%, var(--spice-glow) 50%, var(--spice) 60%, var(--ibad-glow) 75%, var(--ibad) 85%, transparent 100%);
+      opacity: 0.85;
+      animation: breathe 4s ease-in-out infinite;
+      box-shadow: 0 0 8px var(--ibad-dim), 0 0 20px rgba(46, 110, 247, 0.06);
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
 
     /* ─── Header ─── */
@@ -89,7 +97,9 @@
       padding: 48px 48px 36px;
       border-bottom: 1px solid var(--rule);
       position: relative;
-      background: linear-gradient(180deg, rgba(42, 36, 25, 0.5) 0%, transparent 100%);
+      background:
+        radial-gradient(ellipse 60% 80% at 30% 20%, rgba(46, 110, 247, 0.04) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(42, 36, 25, 0.5) 0%, transparent 100%);
     }
 
     .name {
@@ -103,16 +113,19 @@
       background: linear-gradient(
         90deg,
         var(--ink) 0%,
-        var(--ink) 35%,
-        var(--ibad-glow) 50%,
-        var(--ink) 65%,
+        var(--ink) 25%,
+        var(--ibad-glow) 45%,
+        var(--ibad) 50%,
+        var(--ibad-glow) 55%,
+        var(--ink) 75%,
         var(--ink) 100%
       );
       background-size: 200% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: shimmer 6s ease-in-out infinite;
+      animation: shimmer 5s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px var(--ibad-dim));
     }
 
     @keyframes shimmer {
@@ -158,8 +171,9 @@
     }
 
     .contact a:hover {
-      color: var(--ibad);
+      color: var(--ibad-glow);
       border-color: var(--ibad);
+      text-shadow: 0 0 8px var(--ibad-dim);
     }
 
     .contact span::before {
@@ -389,10 +403,13 @@
         transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       }
       .role:hover {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
         background: var(--sand-mid);
-        border-left-color: var(--spice);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        border-left-color: var(--spice-glow);
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.25),
+          0 0 30px var(--ibad-dim),
+          -2px 0 12px rgba(196, 132, 29, 0.08);
       }
     }
 
@@ -441,11 +458,12 @@
       pointer-events: none;
     }
     .section-label.scanned::after {
-      animation: scanline 0.6s ease-out forwards;
+      animation: scanline 0.7s ease-out forwards;
     }
     @keyframes scanline {
-      0% { left: -60%; opacity: 0.7; }
-      100% { left: 120%; opacity: 0; }
+      0% { left: -60%; opacity: 0.9; }
+      60% { opacity: 0.6; }
+      100% { left: 130%; opacity: 0; }
     }
 
     /* ─── Metric Glow ─── */
@@ -453,12 +471,14 @@
       transition: text-shadow 0.6s ease;
     }
     .metric.ignite {
-      text-shadow: 0 0 8px var(--ibad-glow), 0 0 20px var(--ibad-dim);
-      animation: metric-pulse 0.8s ease-out forwards;
+      text-shadow: 0 0 10px var(--ibad-glow), 0 0 24px var(--ibad-dim);
+      animation: metric-pulse 1s ease-out forwards;
+      color: var(--ibad-glow);
     }
     @keyframes metric-pulse {
-      0% { text-shadow: 0 0 12px var(--ibad-glow), 0 0 30px var(--ibad); }
-      100% { text-shadow: 0 0 4px var(--ibad-dim); }
+      0% { text-shadow: 0 0 16px var(--ibad-glow), 0 0 40px var(--ibad); color: #fff; }
+      40% { text-shadow: 0 0 12px var(--ibad-glow), 0 0 30px var(--ibad-dim); }
+      100% { text-shadow: 0 0 6px var(--ibad-dim); color: var(--ibad-glow); }
     }
 
     /* ─── Reduced Motion ─── */
@@ -516,6 +536,7 @@
         background-clip: unset;
         -webkit-text-fill-color: var(--ink);
         animation: none;
+        filter: none;
       }
       .content { padding: 24px 40px 32px; }
       .section { margin-bottom: 22px; }
@@ -530,7 +551,7 @@
         print-color-adjust: exact;
         background: var(--spice) !important;
       }
-      .metric { color: var(--ink); text-shadow: none; }
+      .metric { color: var(--ink) !important; text-shadow: none !important; }
       .section, .header, .role, .edu-item, .building-item {
         opacity: 1 !important;
         transform: none !important;
