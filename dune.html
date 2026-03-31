@@ -9,16 +9,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --void: #0d0b08;
-      --sand-deep: #1a1610;
-      --sand-mid: #2a2419;
+      --void: #12100c;
+      --sand-deep: #1f1b14;
+      --sand-mid: #302a1e;
       --sand-surface: #342d21;
-      --ink: #e8dcc8;
+      --ink: #ede2d0;
       --ink-secondary: #bfb49e;
       --ink-tertiary: #8a7e6a;
       --spice: #c4841d;
       --spice-glow: #e09422;
       --spice-dim: rgba(196, 132, 29, 0.12);
+      --ibad: #2e6ef7;
+      --ibad-glow: #5b8ff9;
+      --ibad-dim: rgba(46, 110, 247, 0.10);
       --rule: rgba(232, 220, 200, 0.1);
       --rule-light: rgba(232, 220, 200, 0.06);
     }
@@ -77,7 +80,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, var(--spice) 30%, var(--spice-glow) 50%, var(--spice) 70%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, var(--ibad) 20%, var(--spice) 35%, var(--spice-glow) 50%, var(--spice) 65%, var(--ibad) 80%, transparent 100%);
       opacity: 0.6;
     }
 
@@ -97,6 +100,24 @@
       line-height: 1.1;
       color: var(--ink);
       text-transform: uppercase;
+      background: linear-gradient(
+        90deg,
+        var(--ink) 0%,
+        var(--ink) 35%,
+        var(--ibad-glow) 50%,
+        var(--ink) 65%,
+        var(--ink) 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 100% 0; }
+      50% { background-position: -100% 0; }
     }
 
     .title {
@@ -137,8 +158,8 @@
     }
 
     .contact a:hover {
-      color: var(--spice);
-      border-color: var(--spice);
+      color: var(--ibad);
+      border-color: var(--ibad);
     }
 
     .contact span::before {
@@ -357,6 +378,106 @@
       padding-top: 0;
     }
 
+    /* ─── Role Hover Elevation ─── */
+    @media (hover: hover) {
+      .role {
+        padding: 12px 16px;
+        margin-left: -16px;
+        margin-right: -16px;
+        border-left: 2px solid transparent;
+        border-radius: 2px;
+        transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .role:hover {
+        transform: translateY(-2px);
+        background: var(--sand-mid);
+        border-left-color: var(--spice);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    /* ─── Scroll Reveal ─── */
+    .js-enabled .section,
+    .js-enabled .header {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .js-enabled .section.revealed,
+    .js-enabled .header.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .js-enabled .section .role,
+    .js-enabled .section .edu-item,
+    .js-enabled .section .building-item {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .js-enabled .section.revealed .role,
+    .js-enabled .section.revealed .edu-item,
+    .js-enabled .section.revealed .building-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Section Label Scan-Line ─── */
+    .section-label {
+      position: relative;
+      overflow: hidden;
+    }
+    .section-label::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--ibad-dim), var(--ibad), var(--ibad-dim), transparent);
+      transform: skewX(-20deg);
+      opacity: 0;
+      transition: none;
+      pointer-events: none;
+    }
+    .section-label.scanned::after {
+      animation: scanline 0.6s ease-out forwards;
+    }
+    @keyframes scanline {
+      0% { left: -60%; opacity: 0.7; }
+      100% { left: 120%; opacity: 0; }
+    }
+
+    /* ─── Metric Glow ─── */
+    .metric {
+      transition: text-shadow 0.6s ease;
+    }
+    .metric.ignite {
+      text-shadow: 0 0 8px var(--ibad-glow), 0 0 20px var(--ibad-dim);
+      animation: metric-pulse 0.8s ease-out forwards;
+    }
+    @keyframes metric-pulse {
+      0% { text-shadow: 0 0 12px var(--ibad-glow), 0 0 30px var(--ibad); }
+      100% { text-shadow: 0 0 4px var(--ibad-dim); }
+    }
+
+    /* ─── Reduced Motion ─── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .js-enabled .section,
+      .js-enabled .header,
+      .js-enabled .section .role,
+      .js-enabled .section .edu-item,
+      .js-enabled .section .building-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
     /* ─── Print Styles ─── */
     @media print {
       :root {
@@ -388,7 +509,14 @@
         background: none;
         border-bottom-color: var(--ink);
       }
-      .name { color: var(--ink); }
+      .name {
+        color: var(--ink);
+        background: none;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        -webkit-text-fill-color: var(--ink);
+        animation: none;
+      }
       .content { padding: 24px 40px 32px; }
       .section { margin-bottom: 22px; }
       .role { margin-bottom: 18px; }
@@ -402,7 +530,21 @@
         print-color-adjust: exact;
         background: var(--spice) !important;
       }
-      .metric { color: var(--ink); }
+      .metric { color: var(--ink); text-shadow: none; }
+      .section, .header, .role, .edu-item, .building-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .role {
+        padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-left: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .section-label::after { display: none; }
       .building-name { color: var(--ink); }
       .edu-degree { color: var(--ink); }
 
@@ -576,5 +718,47 @@
 
     </main>
   </div>
+<script>
+  document.body.classList.add('js-enabled');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.section, .header').forEach(el => el.classList.add('revealed'));
+      return;
+    }
+
+    // Section / header reveal observer
+    const sectionObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add('revealed');
+        // Stagger children
+        const children = el.querySelectorAll('.role, .edu-item, .building-item');
+        children.forEach((child, i) => {
+          child.style.transitionDelay = `${i * 80}ms`;
+        });
+        // Scan-line on section label
+        const label = el.querySelector('.section-label');
+        if (label) {
+          setTimeout(() => label.classList.add('scanned'), 200);
+        }
+        sectionObs.unobserve(el);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    // Metric glow observer
+    const metricObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('ignite');
+        metricObs.unobserve(entry.target);
+      });
+    }, { threshold: 0.8 });
+
+    document.querySelectorAll('.section, .header').forEach(el => sectionObs.observe(el));
+    document.querySelectorAll('.metric').forEach(el => metricObs.observe(el));
+  });
+</script>
 </body>
 </html>
