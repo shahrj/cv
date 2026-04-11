@@ -41,7 +41,7 @@
     body {
       font-family: 'Outfit', -apple-system, sans-serif;
       color: var(--ink);
-      background: radial-gradient(ellipse 120% 80% at 50% 100%, #1a1610 0%, var(--void) 60%, #0a0908 100%);
+      background: linear-gradient(180deg, #0a0908 0%, #12100c 30%, #1a1610 65%, #2a2318 100%);
       line-height: 1.55;
       padding: 40px 20px;
       min-height: 100vh;
@@ -61,8 +61,7 @@
       max-width: 820px;
       margin: 0 auto;
       background: var(--sand-deep);
-      border: 1px solid;
-      border-image: linear-gradient(180deg, rgba(196, 132, 29, 0.2) 0%, rgba(46, 110, 247, 0.12) 50%, rgba(10, 8, 20, 0.3) 100%) 1;
+      border: none;
       border-radius: 2px;
       overflow: hidden;
       position: relative;
@@ -72,6 +71,22 @@
         0 0 120px var(--ibad-dim),
         0 1px 3px rgba(0,0,0,0.3),
         0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    /* Water of Life border */
+    .page::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 2px;
+      padding: 1px;
+      background: linear-gradient(180deg, rgba(196, 132, 29, 0.25) 0%, rgba(46, 110, 247, 0.15) 50%, rgba(10, 8, 20, 0.4) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 3;
     }
 
     /* Spice glow line at top */
@@ -625,7 +640,7 @@
       .section-label { text-shadow: none !important; border-bottom: 1px solid var(--rule) !important; }
       .stillsuit-bar { display: none; }
       .role:nth-child(n) { opacity: 1 !important; }
-      .page { border-image: none !important; border: none !important; }
+      .page::after { display: none; }
       .building-name { color: var(--ink); }
       .edu-degree { color: var(--ink); }
 
@@ -855,12 +870,12 @@
     if (still) {
       const start = Date.now();
       const update = () => {
-        const mins = (Date.now() - start) / 60000;
-        const litres = (mins * 0.08).toFixed(2);
+        const secs = (Date.now() - start) / 1000;
+        const litres = (secs * 0.003).toFixed(3);
         still.textContent = litres + 'L reclaimed';
       };
       update();
-      setInterval(update, 30000);
+      setInterval(update, 5000);
     }
   });
 </script>
