@@ -521,14 +521,13 @@
       transition: text-shadow 0.6s ease;
     }
     .metric.ignite {
-      text-shadow: 0 0 8px var(--ibad-glow), 0 0 20px var(--ibad-dim);
-      animation: metric-pulse 1s ease-out forwards;
-      color: var(--heading);
+      text-shadow: 0 0 4px rgba(53, 118, 174, 0.2);
+      animation: metric-pulse 0.8s ease-out forwards;
+      color: var(--bottle);
     }
     @keyframes metric-pulse {
-      0% { text-shadow: 0 0 16px var(--ibad-glow), 0 0 40px var(--ibad); color: var(--ibad); }
-      40% { text-shadow: 0 0 12px var(--ibad-glow), 0 0 30px var(--ibad-dim); }
-      100% { text-shadow: 0 0 4px var(--ibad-dim); color: var(--heading); }
+      0% { text-shadow: 0 0 8px rgba(53, 118, 174, 0.3); color: var(--heading); }
+      100% { text-shadow: none; color: var(--bottle); }
     }
 
     /* ─── Spice Trance Focus ─── */
