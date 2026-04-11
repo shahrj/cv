@@ -9,21 +9,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --void: #12100c;
-      --sand-deep: #2e2720;
-      --sand-mid: #3a3228;
-      --sand-surface: #443b2f;
-      --ink: #ede2d0;
-      --ink-secondary: #bfb49e;
-      --ink-tertiary: #8a7e6a;
-      --spice: #c4841d;
-      --spice-glow: #e09422;
-      --spice-dim: rgba(196, 132, 29, 0.12);
+      /* Base tones — derived from Bottle Brown #66280C */
+      --void: #0f0a05;
+      --sand-deep: #1f1408;
+      --sand-mid: #33200e;
+      --sand-surface: #442c16;
+      /* Text — Serengeti #E9CB8E family */
+      --ink: #E9CB8E;
+      --ink-secondary: #c4a870;
+      --ink-tertiary: #9a8258;
+      /* Spice — Caramel Butter #A5663A family */
+      --spice: #A5663A;
+      --spice-glow: #c47a48;
+      --spice-dim: rgba(165, 102, 58, 0.15);
+      /* Ibad — electric blue for animations/special (Eyes of Ibad) */
       --ibad: #2e6ef7;
       --ibad-glow: #5b8ff9;
       --ibad-dim: rgba(46, 110, 247, 0.10);
-      --rule: rgba(232, 220, 200, 0.1);
-      --rule-light: rgba(232, 220, 200, 0.06);
+      /* Dune blues — Arabic Blue #3576AE / Vintage Aqua #68AEC9 for static highlights */
+      --dune-blue: #3576AE;
+      --dune-aqua: #68AEC9;
+      --dune-ice: #A9D8DE;
+      /* Rules */
+      --rule: rgba(233, 203, 142, 0.1);
+      --rule-light: rgba(233, 203, 142, 0.06);
     }
 
     * {
@@ -41,7 +50,7 @@
     body {
       font-family: 'Outfit', -apple-system, sans-serif;
       color: var(--ink);
-      background: linear-gradient(180deg, #0a0908 0%, #12100c 30%, #1a1610 65%, #2a2318 100%);
+      background: linear-gradient(180deg, #0a0804 0%, #0f0a05 30%, #1a1208 65%, #2a1c0e 100%);
       line-height: 1.55;
       padding: 40px 20px;
       min-height: 100vh;
@@ -67,8 +76,8 @@
       position: relative;
       z-index: 2;
       box-shadow:
-        0 0 80px rgba(196, 132, 29, 0.06),
-        0 0 120px var(--ibad-dim),
+        0 0 80px rgba(165, 102, 58, 0.08),
+        0 0 120px rgba(53, 118, 174, 0.06),
         0 1px 3px rgba(0,0,0,0.3),
         0 8px 30px rgba(0,0,0,0.25);
     }
@@ -80,7 +89,7 @@
       inset: 0;
       border-radius: 2px;
       padding: 1px;
-      background: linear-gradient(180deg, rgba(196, 132, 29, 0.25) 0%, rgba(46, 110, 247, 0.15) 50%, rgba(10, 8, 20, 0.4) 100%);
+      background: linear-gradient(180deg, rgba(165, 102, 58, 0.3) 0%, rgba(53, 118, 174, 0.15) 50%, rgba(102, 40, 12, 0.2) 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -97,10 +106,10 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent 0%, var(--ibad) 15%, var(--ibad-glow) 25%, var(--spice) 40%, var(--spice-glow) 50%, var(--spice) 60%, var(--ibad-glow) 75%, var(--ibad) 85%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, var(--dune-blue) 15%, var(--dune-aqua) 25%, var(--spice) 40%, var(--spice-glow) 50%, var(--spice) 60%, var(--dune-aqua) 75%, var(--dune-blue) 85%, transparent 100%);
       opacity: 0.85;
       animation: breathe 4s ease-in-out infinite;
-      box-shadow: 0 0 8px var(--ibad-dim), 0 0 20px rgba(46, 110, 247, 0.06);
+      box-shadow: 0 0 8px rgba(53, 118, 174, 0.15), 0 0 20px rgba(53, 118, 174, 0.06);
     }
 
     @keyframes breathe {
@@ -114,7 +123,7 @@
       border-bottom: 1px solid var(--rule);
       position: relative;
       background:
-        radial-gradient(ellipse 60% 80% at 30% 20%, rgba(46, 110, 247, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 30% 20%, rgba(53, 118, 174, 0.05) 0%, transparent 70%),
         linear-gradient(180deg, rgba(42, 36, 25, 0.5) 0%, transparent 100%);
     }
 
@@ -187,9 +196,8 @@
     }
 
     .contact a:hover {
-      color: var(--ibad-glow);
-      border-color: var(--ibad);
-      text-shadow: 0 0 8px var(--ibad-dim);
+      color: var(--dune-aqua);
+      border-color: var(--dune-blue);
     }
 
     .contact span::before {
@@ -437,7 +445,7 @@
         border-left-color: var(--spice-glow);
         box-shadow:
           0 4px 20px rgba(0, 0, 0, 0.25),
-          0 0 30px var(--ibad-dim),
+          0 0 30px rgba(53, 118, 174, 0.08),
           -2px 0 12px rgba(196, 132, 29, 0.08);
       }
     }
@@ -574,7 +582,7 @@
         --ink: #1a1a1a;
         --ink-secondary: #4a4a4a;
         --ink-tertiary: #777;
-        --spice: #8b5e14;
+        --spice: #7a4e28;
         --rule: #ddd;
         --rule-light: #eee;
       }
