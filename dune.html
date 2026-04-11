@@ -9,30 +9,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Base tones — derived from Bottle Brown #66280C */
-      --void: #0f0a05;
-      --sand-deep: #1f1408;
-      --sand-mid: #33200e;
-      --sand-surface: #442c16;
-      /* Text — Serengeti #E9CB8E family */
-      --ink: #E9CB8E;
-      --ink-secondary: #c4a870;
-      --ink-tertiary: #9a8258;
-      /* Spice — Caramel Butter #A5663A family */
+      /* Page surface — Serengeti #E9CB8E */
+      --sand: #E9CB8E;
+      --sand-dark: #d4b87a;
+      --sand-hover: #f0d69c;
+      /* Outer sky — Vintage Aqua #68AEC9 */
+      --sky: #68AEC9;
+      --sky-deep: #3576AE;
+      /* Text — Bottle Brown #66280C family on sand */
+      --ink: #3d1a08;
+      --ink-secondary: #66280C;
+      --ink-tertiary: #8a5a3a;
+      /* Section headers — Arabic Blue #3576AE */
+      --heading: #3576AE;
+      /* Spice — Caramel Butter #A5663A */
       --spice: #A5663A;
       --spice-glow: #c47a48;
-      --spice-dim: rgba(165, 102, 58, 0.15);
-      /* Ibad — electric blue for animations/special (Eyes of Ibad) */
+      --spice-dim: rgba(165, 102, 58, 0.12);
+      /* Ibad — electric blue for animations only */
       --ibad: #2e6ef7;
       --ibad-glow: #5b8ff9;
-      --ibad-dim: rgba(46, 110, 247, 0.10);
-      /* Dune blues — Arabic Blue #3576AE / Vintage Aqua #68AEC9 for static highlights */
-      --dune-blue: #3576AE;
+      --ibad-dim: rgba(46, 110, 247, 0.12);
+      /* Dune palette extras */
       --dune-aqua: #68AEC9;
       --dune-ice: #A9D8DE;
-      /* Rules */
-      --rule: rgba(233, 203, 142, 0.1);
-      --rule-light: rgba(233, 203, 142, 0.06);
+      --bottle: #66280C;
+      /* Rules — dark on sand */
+      --rule: rgba(102, 40, 12, 0.12);
+      --rule-light: rgba(102, 40, 12, 0.06);
     }
 
     * {
@@ -50,7 +54,7 @@
     body {
       font-family: 'Outfit', -apple-system, sans-serif;
       color: var(--ink);
-      background: linear-gradient(180deg, #1a3040 0%, #1e3a4a 20%, #1a3040 50%, #12201a 80%, #0f0a05 100%);
+      background: linear-gradient(180deg, #4a8da8 0%, var(--sky) 30%, #8cc4d8 60%, #c8ddd0 85%, #d4c4a0 100%);
       line-height: 1.55;
       padding: 40px 20px;
       min-height: 100vh;
@@ -61,7 +65,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 1;
     }
@@ -69,17 +73,16 @@
     .page {
       max-width: 820px;
       margin: 0 auto;
-      background: var(--sand-deep);
+      background: var(--sand);
       border: none;
       border-radius: 2px;
       overflow: hidden;
       position: relative;
       z-index: 2;
       box-shadow:
-        0 0 80px rgba(165, 102, 58, 0.08),
-        0 0 120px rgba(53, 118, 174, 0.06),
-        0 1px 3px rgba(0,0,0,0.3),
-        0 8px 30px rgba(0,0,0,0.25);
+        0 0 60px rgba(165, 102, 58, 0.15),
+        0 1px 3px rgba(0,0,0,0.1),
+        0 8px 30px rgba(0,0,0,0.08);
     }
 
     /* Water of Life border */
@@ -89,7 +92,7 @@
       inset: 0;
       border-radius: 2px;
       padding: 1px;
-      background: linear-gradient(180deg, rgba(165, 102, 58, 0.3) 0%, rgba(53, 118, 174, 0.15) 50%, rgba(102, 40, 12, 0.2) 100%);
+      background: linear-gradient(180deg, rgba(165, 102, 58, 0.4) 0%, rgba(53, 118, 174, 0.2) 50%, rgba(102, 40, 12, 0.3) 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -106,10 +109,10 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent 0%, var(--dune-blue) 15%, var(--dune-aqua) 25%, var(--spice) 40%, var(--spice-glow) 50%, var(--spice) 60%, var(--dune-aqua) 75%, var(--dune-blue) 85%, transparent 100%);
-      opacity: 0.85;
+      background: linear-gradient(90deg, transparent 0%, var(--heading) 20%, var(--spice) 40%, var(--bottle) 50%, var(--spice) 60%, var(--heading) 80%, transparent 100%);
+      opacity: 0.7;
       animation: breathe 4s ease-in-out infinite;
-      box-shadow: 0 0 8px rgba(53, 118, 174, 0.15), 0 0 20px rgba(53, 118, 174, 0.06);
+      box-shadow: 0 0 6px rgba(102, 40, 12, 0.2);
     }
 
     @keyframes breathe {
@@ -123,8 +126,8 @@
       border-bottom: 1px solid var(--rule);
       position: relative;
       background:
-        radial-gradient(ellipse 60% 80% at 30% 20%, rgba(53, 118, 174, 0.05) 0%, transparent 70%),
-        linear-gradient(180deg, rgba(42, 36, 25, 0.5) 0%, transparent 100%);
+        radial-gradient(ellipse 60% 80% at 30% 20%, rgba(53, 118, 174, 0.06) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(102, 40, 12, 0.04) 0%, transparent 100%);
     }
 
     .name {
@@ -137,20 +140,20 @@
       text-transform: uppercase;
       background: linear-gradient(
         90deg,
-        var(--dune-aqua) 0%,
-        var(--dune-blue) 25%,
+        var(--bottle) 0%,
+        var(--ink) 25%,
         var(--ibad-glow) 45%,
         var(--ibad) 50%,
         var(--ibad-glow) 55%,
-        var(--dune-blue) 75%,
-        var(--dune-aqua) 100%
+        var(--ink) 75%,
+        var(--bottle) 100%
       );
       background-size: 200% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shimmer 5s ease-in-out infinite;
-      filter: drop-shadow(0 0 12px var(--ibad-dim));
+      filter: drop-shadow(0 0 8px rgba(46, 110, 247, 0.08));
     }
 
     @keyframes shimmer {
@@ -191,13 +194,13 @@
     .contact a {
       color: var(--ink-tertiary);
       text-decoration: none;
-      border-bottom: 1px solid rgba(138, 126, 106, 0.3);
+      border-bottom: 1px solid rgba(102, 40, 12, 0.2);
       transition: color 0.3s, border-color 0.3s;
     }
 
     .contact a:hover {
-      color: var(--dune-aqua);
-      border-color: var(--dune-blue);
+      color: var(--heading);
+      border-color: var(--heading);
     }
 
     .contact span::before {
@@ -226,14 +229,11 @@
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--spice);
+      color: var(--heading);
       margin-bottom: 22px;
       padding-bottom: 10px;
       border-bottom: none;
-      text-shadow:
-        1px 1px 1px rgba(0, 0, 0, 0.6),
-        -0.5px -0.5px 0px rgba(233, 203, 142, 0.08),
-        0 0 8px rgba(165, 102, 58, 0.2);
+      text-shadow: none;
     }
 
     /* ─── Role ─── */
@@ -258,13 +258,13 @@
       font-family: 'Cinzel', Georgia, serif;
       font-size: 0.98rem;
       font-weight: 500;
-      color: var(--dune-aqua);
+      color: var(--ink);
       letter-spacing: 0.02em;
     }
 
     .role-company {
       font-weight: 600;
-      color: var(--dune-ice);
+      color: var(--bottle);
     }
 
     .role-descriptor {
@@ -320,7 +320,7 @@
       width: 6px;
       height: 1px;
       background: var(--spice);
-      opacity: 0.7;
+      opacity: 0.6;
     }
 
     .role-bullets li:last-child {
@@ -351,7 +351,7 @@
       background: var(--spice-dim);
       padding: 3px 10px;
       border-radius: 2px;
-      border: 1px solid rgba(196, 132, 29, 0.2);
+      border: 1px solid rgba(165, 102, 58, 0.25);
       white-space: nowrap;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -368,7 +368,7 @@
 
     .building-name {
       font-weight: 500;
-      color: var(--dune-aqua);
+      color: var(--ink);
     }
 
     /* ─── Education ─── */
@@ -392,7 +392,7 @@
       font-family: 'Cinzel', Georgia, serif;
       font-size: 0.88rem;
       font-weight: 500;
-      color: var(--dune-aqua);
+      color: var(--ink);
       letter-spacing: 0.01em;
     }
 
@@ -442,12 +442,11 @@
       }
       .role:hover {
         transform: translateY(-3px);
-        background: var(--sand-mid);
-        border-left-color: var(--spice-glow);
+        background: var(--sand-hover);
+        border-left-color: var(--spice);
         box-shadow:
-          0 4px 20px rgba(0, 0, 0, 0.25),
-          0 0 30px rgba(53, 118, 174, 0.08),
-          -2px 0 12px rgba(196, 132, 29, 0.08);
+          0 4px 16px rgba(102, 40, 12, 0.08),
+          0 2px 8px rgba(0, 0, 0, 0.06);
       }
     }
 
@@ -485,7 +484,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, var(--spice) 0%, var(--rule) 40%, transparent 100%);
+      background: linear-gradient(90deg, var(--heading) 0%, var(--rule) 40%, transparent 100%);
       transform: skewX(-25deg);
       transform-origin: left bottom;
     }
@@ -522,14 +521,14 @@
       transition: text-shadow 0.6s ease;
     }
     .metric.ignite {
-      text-shadow: 0 0 10px var(--ibad-glow), 0 0 24px var(--ibad-dim);
+      text-shadow: 0 0 8px var(--ibad-glow), 0 0 20px var(--ibad-dim);
       animation: metric-pulse 1s ease-out forwards;
-      color: var(--ibad-glow);
+      color: var(--heading);
     }
     @keyframes metric-pulse {
-      0% { text-shadow: 0 0 16px var(--ibad-glow), 0 0 40px var(--ibad); color: #fff; }
+      0% { text-shadow: 0 0 16px var(--ibad-glow), 0 0 40px var(--ibad); color: var(--ibad); }
       40% { text-shadow: 0 0 12px var(--ibad-glow), 0 0 30px var(--ibad-dim); }
-      100% { text-shadow: 0 0 6px var(--ibad-dim); color: var(--ibad-glow); }
+      100% { text-shadow: 0 0 4px var(--ibad-dim); color: var(--heading); }
     }
 
     /* ─── Spice Trance Focus ─── */
@@ -537,7 +536,7 @@
       animation: trance 1.2s ease-out forwards;
     }
     @keyframes trance {
-      0% { color: rgba(191, 180, 158, 0.4); }
+      0% { color: rgba(102, 40, 12, 0.25); }
       100% { color: var(--ink-secondary); }
     }
 
@@ -666,6 +665,7 @@
         print-color-adjust: exact;
         color: var(--spice) !important;
       }
+      .role-company { color: var(--ink) !important; }
 
       .building-tag {
         -webkit-print-color-adjust: exact;
