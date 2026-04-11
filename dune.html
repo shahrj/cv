@@ -41,7 +41,7 @@
     body {
       font-family: 'Outfit', -apple-system, sans-serif;
       color: var(--ink);
-      background: var(--void);
+      background: radial-gradient(ellipse 120% 80% at 50% 100%, #1a1610 0%, var(--void) 60%, #0a0908 100%);
       line-height: 1.55;
       padding: 40px 20px;
       min-height: 100vh;
@@ -61,7 +61,8 @@
       max-width: 820px;
       margin: 0 auto;
       background: var(--sand-deep);
-      border: 1px solid rgba(196, 132, 29, 0.15);
+      border: 1px solid;
+      border-image: linear-gradient(180deg, rgba(196, 132, 29, 0.2) 0%, rgba(46, 110, 247, 0.12) 50%, rgba(10, 8, 20, 0.3) 100%) 1;
       border-radius: 2px;
       overflow: hidden;
       position: relative;
@@ -205,7 +206,11 @@
       color: var(--spice);
       margin-bottom: 22px;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: none;
+      text-shadow:
+        1px 1px 1px rgba(0, 0, 0, 0.6),
+        -0.5px -0.5px 0px rgba(237, 226, 208, 0.08),
+        0 0 8px rgba(196, 132, 29, 0.15);
     }
 
     /* ─── Role ─── */
@@ -382,6 +387,15 @@
       padding-left: 0;
     }
 
+    /* ─── Prescience Depth (present vivid, past fades) ─── */
+    .role:nth-child(3) { opacity: 0.95; }
+    .role:nth-child(4) { opacity: 0.90; }
+    .role:nth-child(5) { opacity: 0.85; }
+    .role:nth-child(6) { opacity: 0.80; }
+    @media (hover: hover) {
+      .role:nth-child(n+3):hover { opacity: 1; }
+    }
+
     /* ─── Compact roles ─── */
     .role-compact .role-bullets li {
       margin-bottom: 4px;
@@ -439,6 +453,19 @@
       transform: translateY(0);
     }
 
+    /* ─── Crysknife Section Divider ─── */
+    .section-label::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--spice) 0%, var(--rule) 40%, transparent 100%);
+      transform: skewX(-25deg);
+      transform-origin: left bottom;
+    }
+
     /* ─── Section Label Scan-Line ─── */
     .section-label {
       position: relative;
@@ -479,6 +506,34 @@
       0% { text-shadow: 0 0 16px var(--ibad-glow), 0 0 40px var(--ibad); color: #fff; }
       40% { text-shadow: 0 0 12px var(--ibad-glow), 0 0 30px var(--ibad-dim); }
       100% { text-shadow: 0 0 6px var(--ibad-dim); color: var(--ibad-glow); }
+    }
+
+    /* ─── Spice Trance Focus ─── */
+    .spice-trance {
+      animation: trance 1.2s ease-out forwards;
+    }
+    @keyframes trance {
+      0% { color: rgba(191, 180, 158, 0.4); }
+      100% { color: var(--ink-secondary); }
+    }
+
+    /* ─── Stillsuit Readout ─── */
+    .stillsuit-bar {
+      padding: 10px 48px;
+      text-align: right;
+      border-top: 1px solid var(--rule-light);
+    }
+    .stillsuit {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-tertiary);
+      opacity: 0.4;
+      transition: opacity 0.3s;
+    }
+    .stillsuit-bar:hover .stillsuit {
+      opacity: 0.8;
     }
 
     /* ─── Reduced Motion ─── */
@@ -566,6 +621,11 @@
         background: transparent !important;
       }
       .section-label::after { display: none; }
+      .section-label::before { display: none; }
+      .section-label { text-shadow: none !important; border-bottom: 1px solid var(--rule) !important; }
+      .stillsuit-bar { display: none; }
+      .role:nth-child(n) { opacity: 1 !important; }
+      .page { border-image: none !important; border: none !important; }
       .building-name { color: var(--ink); }
       .edu-degree { color: var(--ink); }
 
@@ -739,6 +799,9 @@
       </section>
 
     </main>
+    <div class="stillsuit-bar">
+      <span class="stillsuit">0.00L reclaimed</span>
+    </div>
   </div>
 <script>
   document.body.classList.add('js-enabled');
@@ -749,18 +812,21 @@
       return;
     }
 
+    // Fremen sand-walk: arrhythmic stagger delays
+    const sandWalk = [0, 120, 50, 180, 70, 140, 40, 160, 90, 130];
+
     // Section / header reveal observer
     const sectionObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const el = entry.target;
         el.classList.add('revealed');
-        // Stagger children
         const children = el.querySelectorAll('.role, .edu-item, .building-item');
+        let cumulative = 0;
         children.forEach((child, i) => {
-          child.style.transitionDelay = `${i * 80}ms`;
+          cumulative += sandWalk[i % sandWalk.length];
+          child.style.transitionDelay = `${cumulative}ms`;
         });
-        // Scan-line on section label
         const label = el.querySelector('.section-label');
         if (label) {
           setTimeout(() => label.classList.add('scanned'), 200);
@@ -769,17 +835,33 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-    // Metric glow observer
+    // Metric glow observer with spice trance
     const metricObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('ignite');
+        // Spice trance: fade surrounding text
+        const li = entry.target.closest('li');
+        if (li) li.classList.add('spice-trance');
         metricObs.unobserve(entry.target);
       });
     }, { threshold: 0.8 });
 
     document.querySelectorAll('.section, .header').forEach(el => sectionObs.observe(el));
     document.querySelectorAll('.metric').forEach(el => metricObs.observe(el));
+
+    // Stillsuit condensation counter
+    const still = document.querySelector('.stillsuit');
+    if (still) {
+      const start = Date.now();
+      const update = () => {
+        const mins = (Date.now() - start) / 60000;
+        const litres = (mins * 0.08).toFixed(2);
+        still.textContent = litres + 'L reclaimed';
+      };
+      update();
+      setInterval(update, 30000);
+    }
   });
 </script>
 </body>
